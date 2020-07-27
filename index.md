@@ -1,36 +1,33 @@
 # Processador
 
-Um processador só entende programas em linguagem de máquina,
-que são compostos por sequências de 0's e 1's.
-O significado de cada sequência é definido pelo ISA (instruction set architeture - conjunto de instruçẽos da arquitetura)
+Um processador é composto por 4 estruturas principais
+- Máquina de controle
+- Registradores
+- ULA (Unidade lógica aritimética)
+- Memória
 
-# Conjunto de instruçẽos
+O que o processador faz é simplesmente ler instruções da memória e executá-la
+podendo salvar o resultado em registradores, na memória ou exibir em dispositivos de entrada e saída
 
-Existem duas formas de se pensar em um conjunto de instrução:
+# Máquina de controle
+É a responsável entender as instruçẽos e comandar o processador através de sinais de controle.
 
-- CISC: É um conjunto complexo de instruçẽos,
-ou seja, o processador com muitas intruções para várias situações específicas
-- RISC: Conjunto reduzido de instruções,
-ou seja, o processador tem só a instruçẽos principais
+No caso do processador MIPS, o conjunto de instrução é RISC, ou seja, contém um conjunto reduzido de intruções. ([Clique aqui para ver a diferença entre RISC e CISC](arquitetura.md))
 
-## CISC (Conjunto complexo de instrução)
+Assim a máquina de controle é muito mais rápido
 
-O processador tem um conjunto com muitas intruções que atendem situações específicas,
-para isso as instruções podem ter tamanhos diferentes e demorar tempos diferentes para ser executada,
-o que faz com que o código seja menor,
+# Registradores
+Registradores guardam informações e exitem vários tipos de registradores diferentes dentro de uma arquitetura
+A MIPS tem vários registradores para uso geral, mas tem alguns registradores especiais, como:
+- PC (Program Counter): diz onde está a próxima instrução na memória,
+mudar o valor muda o fluxo do programa, para isso deve usar instruções especiais como jumps ou branchs
+- SP (Stack Pointer): diz a última posição de memória usada,
+serve para empilhar e desempilhar valores na memória
 
-## RISC (Conjunto reduzido de intruções)
+# ULA
+Faz as operações aritméticas
 
-O conjunto de instruções tem apenas as instruções mais importantes,
-assim é muito mais fácil que as instruções sejam padronizadas,
-porém código gerado tende a ser maior,
-pois coisas que era feito com uma intrução na CISC precisa de várias na RISC.
+# Memória
+Salva quais as instruções, na MIPS a memória de instruções e de dados é separada,
+seguindo arquitetura de Havard, em contrapartida a de Von Neuman
 
-# RISC x CISC
-
-A primeira vista, parece que ter mais instruções e ter códigos menores parece muito melhor, porém para o processador entender o que é cada instrução demora muito mais tempo, já que é inviável fazer um processador CISC com circuito combinacional, ou seja, normalmente é microprogramado (é como se tivesse um processador pequeno descobrindo o que o processador grande precisa fazer)
-
-Já em processadores RISC, o fato das instruções serem padronizadas torna viável que a máquina de controle seja feita usando circuito combinaional, e como memória não é um problema atualmente, o fato de programas em arquiteturas RISC serem maior não é um problema muito grande no final
-
-E se você está pensando que se estiver programando em RISC vai ter que escrever muito código,
-isso só é chato quando está escrevendo direto em liguagem de máquina, o que não é a situação atual, onde os códigos são escritos em liguagens de alto nível e então são passados por um compilador, ou seja, quem tem o trabalho de escever o código em linguagem de máquina é o compilador.
